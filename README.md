@@ -7,9 +7,9 @@ This project focuses on detecting **streaks** and **stars** in synthetic astrono
 The first step is do introduce labels for the dataset which is accomplished by the image processing pipeline following which an object detection model based on Faster RCNN architecture with resnet18 as the feature extractor.
 
 ---
-## Annotation Demo
+## Performance Demo
 
-* Annotated image visualizations:
+* model visualizations:
 
   ![Annotation Demo](images/annotation-demo.gif)
 
