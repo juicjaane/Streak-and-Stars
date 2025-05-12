@@ -1,101 +1,101 @@
-# 🌠 Streaks and Star Detection – Digantara
-An image processing and machine learning pipeline to detect and classify **stars** and **streaks** from synthetic astronomical TIFF images.
+# Streak and Star Detection using Image Processing
 
-**Internship Assessment – AI/ML**
-- **Author**: Janeshvar Sivakumar
-- **Organization**: Digantara
-- **Tech**: Python, OpenCV, NumPy, Scikit-learn, PyTorch/TensorFlow
+## Overview
+This project focuses on detecting **streaks** and **stars** in synthetic astronomical images using image processing techniques. The goal is to extract meaningful binary masks and object statistics that can later be used for classification or training ML models.
 
----
+## Preprocessing Pipeline
 
-## 📌 Overview
+The following preprocessing steps are applied to the raw `.tiff` images before classification:
 
-The objective is to classify **stars (point sources)** and **streaks (elongated trails)** from unlabelled 16-bit synthetic TIFF images, using image processing techniques and later a supervised ML/DL model for generalizability.
+### Step 1: Load and Normalize 16-bit TIFF Images
+Each image is initially loaded in 16-bit grayscale format and normalized to 8-bit to ensure compatibility with standard OpenCV operations.
 
----
+### Step 2: Bilateral Filtering
+A bilateral filter is applied to smooth the image while preserving edges. This helps suppress noise without blurring important features like star points or streak edges.
 
-## 🧠 Key Ideas
+## Step 3: Contrast Enhancement using CLAHE
+Contrast Limited Adaptive Histogram Equalization (CLAHE) is used to enhance local contrast in dim regions of the image.
 
-- **Initial dataset is unlabelled** → we generate labels using image processing.
-- **Image Preprocessing**: Convert 16-bit TIFF → 8-bit, bilateral filtering for noise, CLAHE for contrast.
-- **Segmentation**: Morphological ops, adaptive thresholding, eccentricity-based classification.
-- **Label Generation**: Classify connected components by **eccentricity** to create synthetic labels.
-- **Model Training**: Use labels to train ML/DL model with augmentations and fine-tuning.
-- **Deployment Vision**: Optimized for edge deployment → low-latency inference.
+### Step 4: Adaptive Thresholding using Median Histogram
+A custom threshold is selected using the median of the cumulative histogram. This ensures the binarization adapts to image content dynamically.
 
----
 
-## 🧪 Image Processing Pipeline
+### sample
 
-### ✅ Preprocessing
-- Convert 16-bit TIFF → 8-bit for faster processing.
-- Apply **Bilateral Filter** (Gaussian-like noise removal).
-- Apply **CLAHE** (Contrast Limited Adaptive Histogram Equalization) for local contrast.
+| Original  | Enhanced | Binary Mask |
+|----------------|----------------|-------------|
+| ![](visuals/original_8bit_sample.png) | ![](visuals/clahe_enhanced_sample.png) | ![](visuals/binary_mask_sample.png) |
 
-### ✅ Feature Extraction & Classification
-- Adaptive thresholding using **median intensity**.
-- **Morphological Dilation** for streak gap filling.
-- **Connected Components** → calculate **eccentricity**:
-  - `e < 0.9`: Star
-  - `e >= 0.9`: Streak
 
-### ✅ Label Generation
-- Filter by:
-  - Minimum area
-  - Minimum inter-object distance
-- Assign labels for model training.
+After preprocessing, each binary image is analyzed to extract and classify individual objects (stars and streaks). The classification is based on **eccentricity** and object proximity.
 
----
+### Classification Logic
 
-## 🤖 Model Training & Deep Learning
+- **Eccentricity < 0.9** → Classified as **Star** (typically round, green box)
+- **Eccentricity ≥ 0.9** → Classified as **Streak** (typically elongated, red box)
+- **Minimum area** threshold = 75 pixels
+- **Minimum centroid distance** = 10 pixels (to prevent duplicate detections)
 
-### ✔️ Architecture
-- Transfer learning using **Faster R-CNN with ResNet-18**
-- Augmented synthetic dataset used for fine-tuning.
+### Steps
 
-### ✔️ Strategies for Low-Data Regime
-- **Transfer Learning**
-- **Data Augmentation**: Rotation, flipping, synthetic streaks
-- (Explored but not fully implemented) **Few-shot/Zero-shot learning**
+1. **Connected Components** are extracted using `skimage.measure.label` and `regionprops`.
+2. Each valid object (area ≥ 75) is filtered based on centroid distance to avoid duplicates.
+3. Bounding boxes are drawn and labeled with eccentricity and type (star/streak).
+4. Cropped object images are saved separately into:
+   - `stars-images/` for stars
+   - `streaks-images/` for streaks
 
----
 
-## 📊 Evaluation
+6. Two CSV files are generated:
+   - `eccentricity_data.csv` – contains per-object statistics
+   - `image_stats.csv` – summary of total stars and streaks per image
 
-### Metrics
-- Accuracy, Precision, Recall
-- Confusion Matrix (False Positives / Negatives)
-- Intersection-over-Union (IoU) for streak bounding
+Each object is also logged with a set of features that can be used for VISUALISING THE INTER CLASS variance:
 
-### Common Errors
-- False positives: background noise detected as blobs
-- Multiple blobs along one streak
-- Misclassified faint stars/streaks
 
----
+features = {
+    'file': image_path.name,
+    'label': label,  # "star" or "streak"
+    'aspect_ratio': aspect_ratio,
+    'area': area,
+    'eccentricity': eccentricity
+}
 
-## 🧭 Future Work
 
-| Technique | Purpose |
-|----------|---------|
-| 🧲 Matched Filters (Gabor kernels) | Enhance streak features |
-| ➖ Hough Transforms | Detect straight line segments (streaks) |
-| 🪞 Image Layer Separation | Process bright/dark/faint separately |
-| 🧠 Deep Hough Transform CNNs | Improve generalization on real sky images |
+These features were standardized and used to perform unsupervised clustering using **KMeans**, as well as dimensionality reduction using **Principal Component Analysis (PCA)** for visualization.
 
----
+## Clustering
+   - Use **KMeans** clustering with `n_clusters=2` (expecting two natural groups: stars vs. streaks).
+   - Assign the predicted cluster to a new `cluster` column.
 
-## 🖼 Sample Results
+4. **Visualization**:
+   - Scatter plot with:
+     - `pca1` and `pca2` as axes.
+     - Point color representing **cluster assignment**.
+     - Point style showing **true labels** (`star` or `streak`) for comparison.
 
-| Input Image | After Preprocessing | Final Classification |
-|-------------|---------------------|-----------------------|
-| ![](images/input.png) | ![](images/preprocessed.png) | ![](images/result.png) |
+[cluster.png]
 
-<sup>*Visualizations will be added from `.ipynb` output*</sup>
 
----
 
-## 📂 Repository Structure
+### DATASET
+1. The obtain segmented objects were 1. Thresheld 2. Raw crop from original image both of these were used visualise performance
+all images were padded to 128 and used in classification
+-- This is after detection of objects
+[threshold.png] [raw.png]
+2. Since we are not including background information artificial noise and artifacts were introduced 
+[noise.png]
+3. Dataset was further augmented to balance the streak - star bias
+[augmentation.png]
+
+All models were trained with Faster RCNN architecture and resnet18 for feature representation.
+All models performed at 99%, overfit to the given dataset.
+
+
+This is the annotted set of images visualized
+[Annoted.gif]
+
+
 
 ```bash
 StreakStarDetection/
