@@ -5,6 +5,14 @@
 This project focuses on detecting **streaks** and **stars** in synthetic astronomical images using image processing techniques. The goal is to extract meaningful binary masks and object statistics that can be used to detect and classify the astronomical objects.
 
 ---
+## Annotation Demo
+
+* Annotated image visualizations:
+
+  ![Annotation Demo](images/annotation-demo.gif)
+
+---
+### Image processing
 
 ## ENHANCEMENT
 
@@ -13,6 +21,10 @@ The following preprocessing steps are applied to the raw `.tiff` images before c
 ### Step 1: Load and Normalize 16-bit TIFF Images
 
 Each image is initially loaded in 16-bit grayscale format and normalized to 8-bit to ensure compatibility with standard OpenCV operations.
+
+### EDA
+
+![histogram](images/histogramof8bit.png)
 
 ### Step 2: Bilateral Filtering
 
@@ -33,10 +45,8 @@ Contrast Limited Adaptive Histogram Equalization (CLAHE) is used to enhance loca
 A custom threshold is selected using the median of the cumulative histogram. This ensures the binarization adapts to image content dynamically.
 
 ### Sample
-
-| Original                             | Enhanced                              | Binary Mask                        |
-| ------------------------------------ | ------------------------------------- | ---------------------------------- |
-| ![Original](images/original_8bit_sample.png) | ![Enhanced](images/clahe_enhanced_sample.png) | ![Binary](images/binary_mask_sample.png) |
+Side by side comparison of Processed image and reference image
+![comparison](images/image_enhancement_comparison.png)
 
 After preprocessing, each binary image is analyzed to extract and classify individual objects (stars and streaks). The classification is based on **eccentricity** and object proximity.
 
@@ -46,6 +56,9 @@ After preprocessing, each binary image is analyzed to extract and classify indiv
 * **Eccentricity ≥ 0.9** → Classified as **Streak** (typically elongated, red box)
 * **Minimum area** threshold = 75 pixels
 * **Minimum centroid distance** = 10 pixels (to prevent duplicate detections)
+
+### visualizing components
+![components](images/total_components_after_growth.png)
 
 ### Steps
 
@@ -129,19 +142,9 @@ features = {
 
   ![Confusion Matrix](images/confusion_matrix.png)
 
-* Total number of components (stars + streaks) per image:
-
-  ![Total Components After Growth](images/total_components_after_growth.png)
-
 ---
 
-## Annotation Demo
 
-* Annotated image visualizations:
-
-  ![Annotation Demo](images/annotation-demo.gif)
-
----
 
 ## Directory Structure
 
