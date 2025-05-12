@@ -46,7 +46,7 @@ A custom threshold is selected using the median of the cumulative histogram. Thi
 
 ### Sample
 Side by side comparison of Processed image and reference image
-![comparison](images/image_enhancement_comparison.png)
+![comparison](images/processed-threshold-reference-comparison.png)
 
 After preprocessing, each binary image is analyzed to extract and classify individual objects (stars and streaks). The classification is based on **eccentricity** and object proximity.
 
@@ -118,8 +118,14 @@ features = {
    ![Processed Threshold Reference Comparison](images/processed-threshold-reference-comparison.png)
 
 2. Artificial noise and artifacts were introduced since background information was not included.
+    
+    NOISE CLASS - containing gaussian, salt and pepper, normal 
 
    ![Noise Data Sample](images/noise_data_sample.png)
+
+   BACKGROUND CLASS - artifacts, dead/hot pixel, cosmic rays
+
+   ![background Data Sample](images/background_data_sample.png)
 
 3. Dataset was augmented to balance the streak-star bias.
 
