@@ -69,8 +69,8 @@ After preprocessing, each binary image is analyzed to extract and classify indiv
 3. Bounding boxes are drawn and labeled with eccentricity and type (star/streak).
 4. Cropped object images are saved separately into:
 
-   * `stars-images/` for stars
-   * `streaks-images/` for streaks
+   * stars `stars-images/`  for raw image, `Data\Dataset_Raw_Augment_Noise\stars` augmented and padded
+   * streaks `streaks-images/`  for raw image, `Data\Dataset_Raw_Augment_Noise\streaks` augmented and padded
 
 Two CSV files are generated:
 
@@ -153,3 +153,4 @@ features = {
 ---
 
 
+## Installation guide will be released soon

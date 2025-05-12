@@ -2,7 +2,10 @@ Datasets/
 Annotated_Images/
 Centroid_CSVs/
 annotated_output_rcnn/
-Data/
+Data/Dataset_Thresh/
+Data/Dataset_Thresh_Augment/
+Data/Dataset_Raw/
+Data/Dataset_Raw_Augment/
 noise_dataset/
 output_annotations/
 Padded_Data/
