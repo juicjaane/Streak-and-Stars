@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project focuses on detecting **streaks** and **stars** in synthetic astronomical images using image processing techniques. The goal is to extract meaningful binary masks and object statistics that can be used to detect and classify the astronomical objects.
+This project focuses on detecting **streaks** and **stars** in synthetic astronomical images using image processing techniques. The goal is to extract meaningful binary masks and object statistics that can be used to detect and classify the astronomical objects using deep learning.
+
+The first step is do introduce labels for the dataset which is accomplished by the image processing pipeline following which an object detection model based on Faster RCNN architecture with resnet18 as the feature extractor.
 
 ---
 ## Annotation Demo
@@ -151,21 +153,3 @@ features = {
 ---
 
 
-
-## Directory Structure
-
-```bash
-StreakStarDetection/
-├── data/                 # Raw TIFF images
-├── notebooks/            # Jupyter notebooks for processing and training
-├── models/               # Trained model files (if available)
-├── src/
-│   ├── preprocessing.py  # Image enhancement & filtering
-│   ├── segment.py        # Thresholding & morphological ops
-│   ├── features.py       # Eccentricity calculation
-│   ├── train_model.py    # Model training
-│   └── evaluate.py       # Evaluation & metrics
-├── images/               # Visual output samples
-├── README.md
-└── requirements.txt
-```
