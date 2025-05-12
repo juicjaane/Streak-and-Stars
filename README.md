@@ -22,9 +22,11 @@ A bilateral filter is applied to smooth the image while preserving edges. This h
 
 Contrast Limited Adaptive Histogram Equalization (CLAHE) is used to enhance local contrast in dim regions of the image.
 
+---
+### Comparison of image enhancement methods
+
 ![Image Enhancement Comparison](images/image_enhancement_comparison.png)
 
----
 
 ## EDGE DETECTION AND SEGMENTATION
 
@@ -34,7 +36,7 @@ A custom threshold is selected using the median of the cumulative histogram. Thi
 
 | Original                             | Enhanced                              | Binary Mask                        |
 | ------------------------------------ | ------------------------------------- | ---------------------------------- |
-| ![](images/original_8bit_sample.png) | ![](images/clahe_enhanced_sample.png) | ![](images/binary_mask_sample.png) |
+| ![Original](images/original_8bit_sample.png) | ![Enhanced](images/clahe_enhanced_sample.png) | ![Binary](images/binary_mask_sample.png) |
 
 After preprocessing, each binary image is analyzed to extract and classify individual objects (stars and streaks). The classification is based on **eccentricity** and object proximity.
 
