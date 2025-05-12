@@ -1,0 +1,31 @@
+https://www.hou.usra.edu/meetings/orbitaldebris2023/pdf/6132.pdf
+
+Deep-Hough-Transform-Line-Priors (HT-LCNN), 
+Photometric Reduction, 
+Fourier Analysis of Light Curves (FALC) -- otational state and other physical properties of the observed object
+
+
+https://arxiv.org/pdf/2007.09493
+
+Hough-Transform-Line-Priors 
+Deep learning, Hough Transform (HT), Inverse Hough Transform (IHT), HT-IHT block, Geometric line priors, Global line structure, Local features, Convolutional layers, Convolutions in Hough domain, Image input, Featuremap input, Labeled data, Training, Data efficiency, End-to-end trainable, Radon transform inspiration, Polar coordinates (ρ, θ), Hough space, Accumulates featuremap activations, Channel-wise operations, Learnable parameters, Fixed transformation (HT/IHT), Combining features, Wireframe dataset, York Urban dataset, Line-Circle dataset, LCNN baseline, HAWP baseline, Structural AP, Junction mAP, Precision-Recall.
+
+
+https://www.mdpi.com/2072-4292/17/4/631v
+
+Image Layering, DTS Segmentation, Bright/Dark Layer Processing, Improved Matched Filtering, Matched Filter Unit, Dual-Step Search, PCF False Alarm Reduction, Target Combination
+
+https://iopscience.iop.org/article/10.3847/1538-3881/aaddff/pdf
+
+Matched filtering, Template fitting, Radon transform, Fast Radon Transform (FRT), Simple source detection, Computer vision techniques, Hough transform, Machine learning, Short-streak detection, Iterative multiple streak detection, Image Layering, Dual-Threshold Segmentation (DTS), Perpendicular Cross Filtering (PCF).
+
+
+https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=72305ad3907fcb48cadbdffc1dcc14ddfca36cd9
+
+old book 
+ double-gate filter
+ multiple-window filter
+
+
+https://conference.sdo.esoc.esa.int/proceedings/sdc8/paper/236/SDC8-paper236.pdf
+EU space agency v cool 

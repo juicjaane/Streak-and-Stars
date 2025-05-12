@@ -22,8 +22,8 @@ albumentations_aug = A.Compose([
 
 
 # Paths
-original_dir = r'Data\streaks'  # Original images
-augmented_dir = 'augmented_Streaks'  # Where to save new images
+original_dir = r'..\streaks-images'  # Original images
+augmented_dir = r'..\Data\Dataset_Thresh_Augment\streaks'   # Where to save new images
 os.makedirs(augmented_dir, exist_ok=True)
 
 for img_name in os.listdir(original_dir):
@@ -31,7 +31,7 @@ for img_name in os.listdir(original_dir):
     img = Image.open(img_path)
     
     # Generate N augmented versions per image
-    for i in range(10):
+    for i in range(15):
         # Apply PyTorch transforms
         augmented_img = augments(img)
         
