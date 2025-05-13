@@ -10,13 +10,10 @@ The first step is do introduce labels for the dataset which is accomplished by t
 ## Performance Demo
 
 * model visualizations:
-   Annotation Demo
+   
 
-  ![Annotation Demo](images/annotation-demo.gif)
+  ![model Demo](images/annotation-demo.gif)
 
-  Mode Demo
-
-  ![Model Demo](images/prediction-image.gif)
 
 ---
 ### Image processing
@@ -149,6 +146,8 @@ features = {
 
 at Patch size 512x512 streaks were clearly detection with precision 
 at patch size 128x128 streaks and stars are estimated to be detected  
+
+As the reference images, streaks seperately highlighted
 
 ![Model Demo](images/prediction-image.gif)
 
