@@ -22,8 +22,8 @@ albumentations_aug = A.Compose([
 
 
 # Paths
-original_dir = r'..\streaks-images'  # Original images
-augmented_dir = r'..\Data\Dataset_Thresh_Augment\streaks'   # Where to save new images
+original_dir = r'padd\streaks'  # Original images
+augmented_dir = r'padd\streaks'   # Where to save new images
 os.makedirs(augmented_dir, exist_ok=True)
 
 for img_name in os.listdir(original_dir):

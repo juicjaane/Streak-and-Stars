@@ -12,7 +12,7 @@ Padded_Data/
 Processed/
 runs/
 stars-images/
-
+Data/
 streaks-images/
 Test/
 tiles/
@@ -20,3 +20,11 @@ YOLO_Dataset/
 Others/
 augmented_Streaks/
 png files/
+annotated_output_rcnn_new/
+annotated_output_rcnn/
+padd/
+TiledImages/
+TiledImages_128/
+annotated_output_rcnn_new_patched/
+fasterrcnn_star_streak_processed_3.pth
+fasterrcnn_star_streak_processed.pth

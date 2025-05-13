@@ -10,8 +10,13 @@ The first step is do introduce labels for the dataset which is accomplished by t
 ## Performance Demo
 
 * model visualizations:
+   Annotation Demo
 
   ![Annotation Demo](images/annotation-demo.gif)
+
+  Mode Demo
+
+  ![Model Demo](images/prediction-image.gif)
 
 ---
 ### Image processing
@@ -137,14 +142,20 @@ features = {
 
 ## Model Training
 
-* All models were trained with **Faster R-CNN** architecture and **ResNet-18** for feature representation.
-* Achieved over 99% accuracy, indicating overfitting on the small dataset.
+* All models were trained with **Faster R-CNN** architecture and **ResNet-50** for feature representation.
 
-![Training Metrics](images/training_metrics.png)
+* Object Detection Results:
+
+
+at Patch size 512x512 streaks were clearly detection with precision 
+at patch size 128x128 streaks and stars are estimated to be detected  
+
+![Model Demo](images/prediction-image.gif)
+
 
 ---
-
-## Evaluation
+ * classification task results:
+![Training Metrics](images/training_metrics.png)
 
 * Confusion matrix plotted for final trained model:
 
