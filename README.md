@@ -113,6 +113,21 @@ features = {
 
 ## DATASET
 
+# For the object detection task, the images are augmented to improve generalizablility, further to reduce bias towards stars over streaks caused by stark difference in dataset size, 
+   1. Weighted classes were used
+   2. Undersampling of stars were done
+   3. Additional augments of streaks were added
+
+   The Dataset is tiled to
+      512 x 512 size images since the fasterRCNN class in pytorch resizes the images to approx 800x800 which would ressult in a lot of information loss if we use the original 4500x4500 image(padded) 
+      128x128 tiles were also experimented with
+
+
+
+
+
+
+
 1. The segmented objects were:
 
    * Thresholded
