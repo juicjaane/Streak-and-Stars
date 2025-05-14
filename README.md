@@ -97,6 +97,7 @@ features = {
 
 * Use **KMeans** clustering with `n_clusters=2` (expecting two natural groups: stars vs. streaks).
 * Assign the predicted cluster to a new `cluster` column.
+* This is done to visualize the clear difference in feature repressentation of stars and streaks
 
 ### Visualization
 
@@ -112,6 +113,24 @@ features = {
 
 ## DATASET
 
+#### For the object detection task, 
+The images are augmented to improve generalizablility, further to reduce bias towards stars over streaks caused by stark difference in dataset size, 
+   1. Weighted classes were used
+   2. Undersampling of stars were done
+   3. Additional augments of streaks were added
+ #### Negative samples were also used to make sure false positives are reduced.
+
+
+   The Dataset is tiled to
+      512 x 512 size images since the fasterRCNN class in pytorch resizes the images to approx 800x800 which would ressult in a lot of information loss if we use the original 4500x4500 image(padded) 
+      128x128 tiles were also experimented with
+
+
+
+
+
+
+#### As an image classification task, this problem can be done by classifying a cropped image of size 128x128 which is lesser than the maximum size of any astronomical object in the dataset. 
 1. The segmented objects were:
 
    * Thresholded
