@@ -113,7 +113,7 @@ features = {
 
 ## DATASET
 
-# For the object detection task, the images are augmented to improve generalizablility, further to reduce bias towards stars over streaks caused by stark difference in dataset size, 
+#### For the object detection task, the images are augmented to improve generalizablility, further to reduce bias towards stars over streaks caused by stark difference in dataset size, 
    1. Weighted classes were used
    2. Undersampling of stars were done
    3. Additional augments of streaks were added
