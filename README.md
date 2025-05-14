@@ -97,6 +97,7 @@ features = {
 
 * Use **KMeans** clustering with `n_clusters=2` (expecting two natural groups: stars vs. streaks).
 * Assign the predicted cluster to a new `cluster` column.
+* This is done to visualize the clear difference in feature repressentation of stars and streaks
 
 ### Visualization
 
